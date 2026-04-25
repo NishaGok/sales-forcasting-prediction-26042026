@@ -2,7 +2,7 @@
 import pandas as pd
 import os
 import joblib
-
+import numpy as np
 from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -73,7 +73,7 @@ test_preds = best_model.predict(Xtest)
 print("Train R2:", r2_score(ytrain, train_preds))
 print("Test R2:", r2_score(ytest, test_preds))
 print("Test MAE:", mean_absolute_error(ytest, test_preds))
-print("Test RMSE:", mean_squared_error(ytest, test_preds, squared=False))
+print("Test RMSE:", np.sqrt(mean_squared_error(ytest, test_preds)))
 model_path = "best_sales_forecast_model_v1.joblib"
 joblib.dump(best_model, model_path)
 
